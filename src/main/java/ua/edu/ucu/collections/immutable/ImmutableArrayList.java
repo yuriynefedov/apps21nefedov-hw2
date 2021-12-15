@@ -1,10 +1,5 @@
 package ua.edu.ucu.collections.immutable;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Objects;
-
 public final class ImmutableArrayList implements ImmutableList {
 
     private Object[] array;
@@ -14,7 +9,7 @@ public final class ImmutableArrayList implements ImmutableList {
         System.arraycopy(elements, 0, array, 0, elements.length);
     }
 
-    public ImmutableArrayList() {}
+    public ImmutableArrayList() { }
 
     @Override
     public ImmutableList add(Object e) {
@@ -38,9 +33,12 @@ public final class ImmutableArrayList implements ImmutableList {
     @Override
     public ImmutableList addAll(int index, Object[] c) {
         Object[] updatedArray = new Object[array.length + c.length];
-        if (index >= 0) System.arraycopy(array, 0, updatedArray, 0, index);
+        if (index >= 0) {
+            System.arraycopy(array, 0, updatedArray, 0, index);
+        }
         System.arraycopy(c, 0, updatedArray, index, c.length);
-        System.arraycopy(array, index, updatedArray, index + c.length, array.length - index);
+        System.arraycopy(array, index, updatedArray, index + c.length,
+                array.length - index);
         return new ImmutableArrayList(updatedArray);
     }
 
@@ -53,7 +51,8 @@ public final class ImmutableArrayList implements ImmutableList {
     public ImmutableList remove(int index) {
         Object[] updatedArray = new Object[array.length - 1];
         System.arraycopy(array, 0, updatedArray, 0, index);
-        System.arraycopy(array, index + 1, updatedArray, index, array.length - 1 - index);
+        System.arraycopy(array, index + 1, updatedArray, index,
+                array.length - 1 - index);
         return new ImmutableArrayList(updatedArray);
     }
 
