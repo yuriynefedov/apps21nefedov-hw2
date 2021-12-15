@@ -98,6 +98,8 @@ public final class ImmutableArrayList implements ImmutableList {
 
     @Override
     public Object[] toArray() {
-        return array;
+        Object[] updatedArray = new Object[array.length];
+        System.arraycopy(array, 0, updatedArray, 0, array.length);
+        return updatedArray;
     }
 }
